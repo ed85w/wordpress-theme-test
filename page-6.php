@@ -1,3 +1,6 @@
+<!--  named page 6* as this means slug can change without causing issue (* get this from dashboard > pages > *page* url) -->
+
+
 <?php get_header(); ?>
 
 <div class="row">
@@ -6,16 +9,16 @@
 		<?php 
 
 		if( have_posts() ):
-
 			while ( have_posts() ): the_post(); ?>
 
-				<!-- looks for content- file name e.g content-image.php -->
-				<?php get_template_part('content', get_post_format()); ?>
+				<p> <?php the_content(); ?> </p>
+
+				<h3> <?php the_title(); ?> </h3>
+				
+				<hr>
 
 			<?php endwhile;
-
 		endif;
-		
 		?>
 	</div>
 
@@ -24,4 +27,5 @@
 	</div>
 
 </div><!--  close row -->
+
 <?php get_footer(); ?>
