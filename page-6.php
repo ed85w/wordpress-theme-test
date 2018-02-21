@@ -1,5 +1,5 @@
 <!--  named page 6* as this means slug can change without causing issue (* get this from dashboard > pages > *page* url) -->
-
+<!-- used for about page -->
 
 <?php get_header(); ?>
 

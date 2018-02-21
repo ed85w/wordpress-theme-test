@@ -1,5 +1,5 @@
 <!-- template with no page title -->
-
+<!-- used for contact page -->
 <?php 
 
 /*
