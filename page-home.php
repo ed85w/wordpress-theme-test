@@ -2,56 +2,76 @@
 
 <div class="row">
 
-	<div class="col-xs-12">
-
 		<?php
+			//get latest post from 3 different categories
+			$args_cat = array(
+				'include' => '4, 7, 8'
+			);
 
-			//CUSTOM QUERY, GET MOST RECENT POST
-			$LastBlog = new WP_Query('type=post&posts_per_page=1');
+			$categories = get_categories( $args_cat );
 
-			if( $LastBlog->have_posts() ):
+			foreach ($categories as $category): {
+				$args = array(
+					'type' => 'post',
+					'posts_per_page' => 1, 
+					'category__in' => $category->term_id,
+				);
+				$LastBlog = new WP_Query($args);
 
-				while ( $LastBlog->have_posts() ): $LastBlog->the_post(); ?>
+				if( $LastBlog->have_posts() ):
 
-					<!-- looks for content- file name e.g content-image.php -->
-					<?php get_template_part('content', get_post_format()); ?>
+					while ( $LastBlog->have_posts() ): $LastBlog->the_post(); ?>
 
-				<?php endwhile;
+						<div class="col-xs-12 col-sm-4">
 
-			endif;
+							<!-- looks for content- file name e.g content-image.php -->
+							<?php get_template_part('content', 'featured'); ?>
 
-			//reset the post query (use after custom WP_Query)
-			wp_reset_postdata();
+						</div>
+
+					<?php endwhile;
+
+				endif;
+
+				//reset the post query (use after custom WP_Query)
+				wp_reset_postdata();
+				}
+			endforeach;
+
+			
 
 		?>
 
-	</div>
+</div>
+
+<div class="row">
 
 
 	<div class="col-xs-12 col-sm-8">
 
 		<?php 
 
-		if( have_posts() ):
+			if( have_posts() ):
 
-			while ( have_posts() ): the_post(); ?>
+				while ( have_posts() ): the_post(); ?>
 
-				<!-- looks for content- file name e.g content-image.php -->
-				<?php get_template_part('content', get_post_format()); ?>
+					<!-- looks for content- file name e.g content-image.php -->
+					<?php get_template_part('content', get_post_format()); ?>
 
-			<?php endwhile;
+				<?php endwhile;
 
-		endif;
+			endif;
 
 		
-		//CUSTOM QUERY, SELECT THE NEXT 2 POSTS, NOT INCLUDING THE FIRST
-		$args = array(
-			'type' => 'post',
-			'posts_per_page' => 2,
-			'offset' => 1,
-		);
+			//CUSTOM QUERY, SELECT THE NEXT 2 POSTS, NOT INCLUDING THE FIRST
+/*			
+			$args = array(
+				'type' => 'post',
+				'posts_per_page' => 2,
+				'offset' => 1,
+			);
 
-		$LastBlog = new WP_Query($args);
+			$LastBlog = new WP_Query($args);
 
 			if( $LastBlog->have_posts() ):
 
@@ -66,17 +86,18 @@
 
 			//reset the post query (use after custom WP_Query)
 			wp_reset_postdata();
-
+*/
 		?>
 
-		<hr>
-		<hr>
+		<!-- <hr> -->
 
 		<?php
 
 		//CUSTOM QUERY, SELECT ONLY NEWS 
 		//'posts_per_page=-1' = infinite, not as set 
 		//get category num from url in edit category in dashboard
+		
+/*		
 		$LastBlog = new WP_Query('type=post&posts_per_page=-1&category_name=news');
 
 			if( $LastBlog->have_posts() ):
@@ -92,7 +113,7 @@
 
 			//reset the post query (use after custom WP_Query)
 			wp_reset_postdata();
-
+*/
 		?>
 
 
