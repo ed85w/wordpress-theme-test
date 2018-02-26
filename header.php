@@ -8,7 +8,7 @@
 
 <?php 
 	
-	// applies 'awesome-class' & 'my-class' if front page (front page set in seetings!)
+	// applies 'awesome-class' & 'my-class' if front page (front page set in setings!)
 	if( is_front_page() ):
 		$awesome_classes = array('awesome-class', 'my-class');
 	else:
