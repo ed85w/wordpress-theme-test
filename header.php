@@ -18,6 +18,7 @@
 
 <body <?php body_class($awesome_classes); ?> >
 
+	<!-- NAVBAR -->
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">

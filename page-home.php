@@ -1,3 +1,5 @@
+<!-- HOME PAGE (Set in settings > reading) -->
+
 <?php get_header(); ?>
 
 <div class="row">
@@ -98,29 +100,6 @@
 			<?php endwhile;
 			
 		endif;
-		
-		//PRINT OTHER 2 POSTS NOT THE FIRST ONE
-/*
-		$args = array(
-			'type' => 'post',
-			'posts_per_page' => 2,
-			'offset' => 1,
-		);
-		
-		$lastBlog = new WP_Query($args);
-			
-		if( $lastBlog->have_posts() ):
-			
-			while( $lastBlog->have_posts() ): $lastBlog->the_post(); ?>
-				
-				<?php get_template_part('content',get_post_format()); ?>
-			
-			<?php endwhile;
-			
-		endif;
-		
-		wp_reset_postdata();
-*/
 				
 		?>
 		
