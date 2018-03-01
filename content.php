@@ -6,7 +6,7 @@
 	</header>
 	
 	<div class="row">
-		
+				
 		<?php if( has_post_thumbnail() ): ?>
 		
 			<div class="col-xs-12 col-sm-4">

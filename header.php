@@ -22,7 +22,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<nav class="navbar navbar-default">
+				<nav class="navbar navbar-default navbar-fixed-top">
 			  		<div class="container-fluid">
 				    <!-- Brand and toggle get grouped for better mobile display -->
 				    	<div class="navbar-header">
@@ -32,7 +32,7 @@
 				        		<span class="icon-bar"></span>
 				        		<span class="icon-bar"></span>
 				      		</button>
-				      		<a class="navbar-brand" href="#">Test Theme</a>
+				      		<a class="navbar-brand" href="<?php echo home_url(); ?>">Test Theme</a>
 				    	</div>
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<?php 
@@ -49,10 +49,18 @@
 				  	</div><!-- /.container-fluid -->
 				</nav>
 			</div>
+
+			<div class="col-xs-12">
+				<div class="search-form-container">
+					<div class="container">
+						<?php get_search_form(); ?>
+					</div>
+				</div>
+			</div>
 		</div>
 
-	<!-- header image code -->
-	<img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
+	<!-- header image code (added, if wanted, from the appearance menu-->
+	<img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" /> 
 
 
 

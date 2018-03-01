@@ -7,9 +7,16 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-8">
 
-		<div class="row text-center">
+		<div class="row text-center no-margin">
 		
 			<?php 
+
+			// PAGINATION (overrides blog posts per page setting in dashboard > settings > reading)
+			//if statement (streamlined syntax) get current page or if no current use 1
+			$currentPage = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			//3 posts per page
+			$args = array('posts_per_page' => 3, 'paged' => $currentPage);
+			query_posts($args);
 
 			if( have_posts() ):
 
@@ -39,9 +46,17 @@
 						</div>
 					</div>
 
-				<?php $i++; endwhile;
+				<?php $i++; endwhile; ?>
 
-			endif;
+				<!-- pagination -->
+				<div class="col-xs-6 text-left">
+					<?php next_posts_link( '<< Older Posts') ?>
+				</div>
+				<div class="col-xs-6 text-right">
+					<?php previous_posts_link( 'Newer Posts >>') ?>
+				</div>
+
+			<?php endif;
 			
 			?>
 		</div>

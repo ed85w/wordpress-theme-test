@@ -1,5 +1,7 @@
 <?php 
 
+// STATIC FILES SETUP
+
 //function to embed custom css & js (test_theme.css in css folder & test_theme.js in js folder)
 //always use unique names for functions!!
 function test_theme_script_enqueue() { 
@@ -14,6 +16,7 @@ function test_theme_script_enqueue() {
 
 //embed custom css & js
 add_action('wp_enqueue_scripts', 'test_theme_script_enqueue');
+
 
 // THEME MENU FUNCTIONS
 
@@ -44,7 +47,8 @@ add_theme_support( 'post-thumbnails' );
 
 // add custom post formats menu
 add_theme_support( 'post-formats', array('aside','image','video'));
-
+//use HTML5 in search form
+add_theme_support( 'html5', array('search-form') );
 
 // SIDEBAR FUNCTION
 
