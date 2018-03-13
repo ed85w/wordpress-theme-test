@@ -39,6 +39,7 @@
 							endif; 
 							?>
 
+							<!-- print featured image as background -->
 							<div class="blog-element" style="background-image: url(<?php echo $urlImg ?>);">
 							<?php the_title( sprintf('<h1 class="entry-title"><a href="%s">', esc_url( get_permalink() ) ),'<a/></h1>' ); ?>
 

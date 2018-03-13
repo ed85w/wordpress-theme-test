@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html <?php language_attributes( ); ?> >
 <head>
-	<meta charset="utf-8">
-	<title>Test Theme</title>
+	<meta charset="<?php bloginfo( 'charset'); ?>">
+	<title><?php bloginfo('name'); ?><?php wp_title('|'); ?></title> <!-- title is theme name | blog post title -->
+	<meta name="description" content="<?php bloginfo('description'); ?>"> <!-- desciption is tagline -->
 	<?php wp_head(); ?>
 </head>
 
@@ -40,7 +41,9 @@
 							wp_nav_menu(array(
 								'theme_location' => 'primary',
 								'container' => false,
-								'menu_class' => 'nav navbar-nav navbar-right'
+								'menu_class' => 'nav navbar-nav navbar-right',
+								// add walker dropdown menu
+								'walker' => new Walker_Nav_Primary()
 								)
 							);
 
