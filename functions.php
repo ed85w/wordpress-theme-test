@@ -139,7 +139,7 @@ function theme_custom_post_type(){
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
-		'hierarchical' => false,
+		'hierarchical' => false, //ie tags
 		'supports' => array(
 			'title',
 			'editor',
@@ -148,7 +148,7 @@ function theme_custom_post_type(){
 			'revisions',
 			// 'comments' etc
 		),
-		'taxonomies' => array('category', 'post_tag'),
+		// 'taxonomies' => array('category', 'post_tag'),
 		'menu_position' => 5,
 		'exclude_from_search' => false,
 	);
@@ -157,3 +157,67 @@ function theme_custom_post_type(){
 }
 
 add_action('init', 'theme_custom_post_type');
+
+
+// custom taxonomies for the above
+
+function theme_custom_taxonomies() {
+	
+	//add new taxonomy, hierarchical
+	$labels = array(
+		'name' => 'Fields', //always plural!
+		'singular_name' => 'Field',
+		'search_items' => 'Search Fields',
+		'all_items' => 'All Fields',
+		'parent_item' => 'Parent Field',
+		'parent_item_colon' => 'Parent Field:',
+		'edit_item' => 'Edit Field',
+		'update_item' => 'Update Field',
+		'add_new_item' => 'Add New Field',
+		'new_item_name' => 'New Field Name',
+		'menu_name' => 'Fields'
+	);
+
+	$args = array(
+		'hierarchical' => true, //ie categories
+		'labels' => $labels,
+		'show_ui' => true,
+		'show_admin_column' => true,
+		'query_var' => true, //ability to create custom queries
+		'rewrite' => array('slug' => 'field'), //rewrite slug (name of taxonomy, lower case - DON'T USE TYPE!)
+	);
+
+	//register 'field' taxonomy to 'portfolio' custom post type
+	register_taxonomy('field' , array('portfolio'), $args);
+
+
+	//add new taxonomy, NOT hierarchical
+
+	register_taxonomy( 'software', 'portfolio', array(
+		'label' => 'Software',
+		'rewrite' => array('slug' => 'software'),
+		'hierarchical' => false, 
+	) );
+}
+
+add_action( 'init', 'theme_custom_taxonomies');
+
+/*
+	=========================================
+	CUSTOM TERM FUNCTION (used in single-portfolio.php)
+	=========================================
+*/
+
+function theme_get_terms($postID, $term) {
+
+	$terms_list = wp_get_post_terms($postID, $term);
+	$output ='';
+
+	$i = 0; 
+	foreach ($terms_list as $term) {$i++;
+		if($i > 1) {$output .= ', ';}
+	 	$output .= '<a href="' . get_term_link($term) . '">'. $term->name .'</a>';
+	} 
+
+	return $output;
+}
